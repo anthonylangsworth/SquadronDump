@@ -25,7 +25,7 @@ string DecodeText(string? text)
 
 string DecodeDate(string? date)
 {
-    return DateTime.TryParse(date ?? string.Empty, CultureInfo.CurrentCulture, DateTimeStyles.None, out DateTime result) ? result.ToString() : "(None)";
+    return DateTime.TryParse(date ?? string.Empty, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime result) ? result.ToString() : "(None)";
 }
 
 void DumpMembers(Member[] members, TextWriter textWriter)
