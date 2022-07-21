@@ -3,16 +3,19 @@ using System.Globalization;
 using System.Text;
 using System.Text.Json;
 using SquadronDump;
+using System.Net.Http.Headers;
 
 async Task<uint> GetSquadronID(HttpClient httpClient, string squadronCode, string platform)
 {
-    SquadronList? squadronList = JsonSerializer.Deserialize<SquadronList>(await httpClient.GetStringAsync($"https://api.orerve.net/2.0/website/squadron/info?platform={platform}&tag={squadronCode}"));
+    SquadronList? squadronList = JsonSerializer.Deserialize<SquadronList>(
+        await httpClient.GetStringAsync($"https://api.orerve.net/2.0/website/squadron/info?platform={platform}&tag={squadronCode}"));
     return squadronList?.Squadron?.Id ?? 0;
 }
 
 async Task<MemberList> GetSquadronMembers(HttpClient httpClient, uint squadronId)
 {
-    return JsonSerializer.Deserialize<MemberList>(await httpClient.GetStreamAsync($"https://api.orerve.net/2.0/website/squadron/member/list?squadronId={squadronId}")) ?? new MemberList();
+    return JsonSerializer.Deserialize<MemberList>(
+        await httpClient.GetStreamAsync($"https://api.orerve.net/2.0/website/squadron/member/list?squadronId={squadronId}")) ?? new MemberList();
 }
 
 string DecodeText(string? text)
@@ -54,9 +57,10 @@ try
         .Build();
 
     using HttpClient httpClient = new HttpClient();
-    httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(
+    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
         "Bearer", config.GetRequiredSection("token").Value);
-    uint squadronId = await GetSquadronID(httpClient, config.GetRequiredSection("tag").Value, config.GetRequiredSection("platform").Value);
+    uint squadronId = await GetSquadronID(httpClient, config.GetRequiredSection("tag").Value, 
+        config.GetRequiredSection("platform").Value);
     if (squadronId != 0)
     {
         DumpMembers((await GetSquadronMembers(httpClient, squadronId)).Members, Console.Out);
