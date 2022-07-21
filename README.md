@@ -5,8 +5,8 @@ identify potential promotions or synchronize levels with other services like **I
 
 # Use
 
-1. Copy `appSettings.sample` to `appSettings.json`.
-2. Open "https://www.elitedangerous.com/community/squadrons/browse" in a browser.
+1. Copy [`appSettings.sample`](SquadronDump/appSettings.sample) to `appSettings.json`.
+2. Open https://www.elitedangerous.com/community/squadrons/browse in a browser.
 3. The browser will redirect you to authenticate. Log in with the same credentials as you use in-game.
 4. Once the page shows the correct results, enter Developer Mode, copy the "authorization" header value for any server request then paste it in the `token` value in `appSettings.config`. Remove the preceeding "Bearer".
 5. Enter the four letter squadron tag you want members of into the `tag` value in `appSettings.json`.
@@ -16,11 +16,12 @@ identify potential promotions or synchronize levels with other services like **I
 # Errors
 
 | HTTP Error | Description |
+| --- | --- |
 | 401 | The token pasted in `appSettings.json` in step 4 has expired or is invalid. Repeat steps 2 through 4 above. Remember to remove the preceeding "Bearer". |
 | 403 | Players can only view members of their own squadron. Frontier imposes this presumably to protect players' privacy. |
-| 404 | The squadron does not exist. Check the tag and platform values added steps 5 and 6. |
+| 404 | The squadron does not exist. Check the `tag` and `platform` values added steps 5 and 6 to `appSettings.json`. |
 
 
 # License
 
-See LICENSE for details (GNU v3).
+See [LICENSE](LICENSE) for details (GNU Public License v3).
