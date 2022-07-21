@@ -247,4 +247,4 @@ ModelManifest.xml
 *.env
 
 # Remove appSettings.config to prevent adding sensitive tokens to git
-appSettings.config
+appSettings.json
