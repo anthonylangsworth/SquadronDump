@@ -1,0 +1,5 @@
+﻿{
+	"tag": "KNTI", // TODO: Replace with the four letter squadron tag
+	"platform": "PC", // TODO: Replace with the platform code
+	"token": "" // TODO: Copy from a your browser after logging in to https://www.elitedangerous.com/community/squadrons/browse
+}
