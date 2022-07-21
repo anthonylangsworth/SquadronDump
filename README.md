@@ -15,10 +15,10 @@ identify potential promotions or synchronize levels with other services like **I
 
 # Errors
 
-|HTTP Error|Description|
-|401|The token pasted in `appSettings.json` in step 4 has expired or is invalid. Repeat steps 2 through 4 above. Remember to remove the preceeding "Bearer".|
-|403|Players can only view members of their own squadron. Frontier imposes this presumably to protect players' privacy.|
-|404|The squadron does not exist. Check the tag and platform values added steps 5 and 6.|
+| HTTP Error | Description |
+| 401 | The token pasted in `appSettings.json` in step 4 has expired or is invalid. Repeat steps 2 through 4 above. Remember to remove the preceeding "Bearer". |
+| 403 | Players can only view members of their own squadron. Frontier imposes this presumably to protect players' privacy. |
+| 404 | The squadron does not exist. Check the tag and platform values added steps 5 and 6. |
 
 
 # License
