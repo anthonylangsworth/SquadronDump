@@ -8,7 +8,7 @@ identify potential promotions or synchronize levels with other services like **I
 1. Copy [`appSettings.sample`](SquadronDump/appSettings.sample) to `appSettings.json`.
 2. Open https://www.elitedangerous.com/community/squadrons/browse in a browser.
 3. The browser will redirect you to authenticate. Log in with the same credentials as you use in-game.
-4. Once the page shows the correct results, enter Developer Mode, copy the "authorization" header value for any server request then paste it in the `token` value in `appSettings.config`. Remove the preceeding "Bearer".
+4. Once the page shows the correct results, enter Developer Mode, copy the "authorization" header value for any server request then paste it in the `token` value in `appSettings.json`. Remove the preceeding "Bearer".
 5. Enter your four letter squadron tag into the `tag` value in `appSettings.json`.
 6. Enter your platform into the `platform` value in `appSettings.json`, usually `PC`.
 7. Save `appSettings.config` then run `SquadronDump.exe`. Pipe the output, e.g. `squadronDump > members.csv` to create a file you can open in a spreadsheet application.
