@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SquadronDump
 {
-    internal class SquadronList
+    internal class SquadronResult
     {
         [JsonPropertyName("squadron")]
         public Squadron Squadron { get; set; } = new Squadron();

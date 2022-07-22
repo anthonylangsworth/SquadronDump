@@ -4,18 +4,19 @@ using System.Text;
 using System.Text.Json;
 using SquadronDump;
 using System.Net.Http.Headers;
+using System.Web;
 
 async Task<uint> GetSquadronID(HttpClient httpClient, string squadronCode, string platform)
 {
-    SquadronList? squadronList = JsonSerializer.Deserialize<SquadronList>(
-        await httpClient.GetStringAsync($"https://api.orerve.net/2.0/website/squadron/info?platform={platform}&tag={squadronCode}"));
+    SquadronResult? squadronList = JsonSerializer.Deserialize<SquadronResult>(
+        await httpClient.GetStringAsync($"https://api.orerve.net/2.0/website/squadron/info?platform={HttpUtility.UrlEncode(platform)}&tag={HttpUtility.UrlEncode(squadronCode)}"));
     return squadronList?.Squadron?.Id ?? 0;
 }
 
-async Task<MemberList> GetSquadronMembers(HttpClient httpClient, uint squadronId)
+async Task<MemberResult> GetSquadronMembers(HttpClient httpClient, uint squadronId)
 {
-    return JsonSerializer.Deserialize<MemberList>(
-        await httpClient.GetStreamAsync($"https://api.orerve.net/2.0/website/squadron/member/list?squadronId={squadronId}")) ?? new MemberList();
+    return JsonSerializer.Deserialize<MemberResult>(
+        await httpClient.GetStreamAsync($"https://api.orerve.net/2.0/website/squadron/member/list?squadronId={squadronId}")) ?? new MemberResult();
 }
 
 string DecodeText(string? text)
