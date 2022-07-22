@@ -21,7 +21,7 @@ These instructions assume you are comfortable using a browser's developer mode a
 | --- | --- |
 | 401 (Unauthorized) | The token pasted in `appSettings.json` in step 5 has expired or is invalid. Repeat steps 2 through 5 above. Remember to remove the preceeding "Bearer". |
 | 403 (Access Denied)| Players can only view members of their own squadron. Frontier imposes this presumably to protect players' privacy. |
-| 404 (Not found) | The squadron does not exist. Check the `tag` and `platform` values added steps 5 and 6 to `appSettings.json`. |
+| 404 (Not found) | The squadron does not exist. Check the `tag` and `platform` values added steps 6 and 7 to `appSettings.json`. |
 
 
 # License
