@@ -5,6 +5,7 @@ using System.Text.Json;
 using SquadronDump;
 using System.Net.Http.Headers;
 using System.Web;
+using CsvHelper;
 
 async Task<uint> GetSquadronID(HttpClient httpClient, string squadronCode, string platform)
 {
@@ -19,36 +20,11 @@ async Task<MemberResult> GetSquadronMembers(HttpClient httpClient, uint squadron
         await httpClient.GetStreamAsync($"https://api.orerve.net/2.0/website/squadron/member/list?squadronId={squadronId}")) ?? new MemberResult();
 }
 
-string DecodeText(string? text)
-{
-    return Encoding.UTF8.GetString(Convert.FromHexString(text ?? string.Empty));
-}
-
-string DecodeDate(string? date)
-{
-    return DateTime.TryParse(date ?? string.Empty, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime result) ? result.ToString() : "(None)";
-}
-
 void DumpMembers(Member[] members, TextWriter textWriter)
 {
-    textWriter.WriteLine("Name,Squadron Rank,Date Requested,Pending,Date Joined,Online,Last Online");
-    foreach (Member member in members)
-    {
-        textWriter.Write(DecodeText(member.Name));
-        textWriter.Write(",");
-        textWriter.Write(member.RankId);
-        textWriter.Write(",");
-        textWriter.Write(DecodeDate(member.Requested));
-        textWriter.Write(",");
-        textWriter.Write(member.Pending);
-        textWriter.Write(",");
-        textWriter.Write(DecodeDate(member.Joined));
-        textWriter.Write(",");
-        textWriter.Write(member.Presence);
-        textWriter.Write(",");
-        textWriter.Write(DecodeDate(member.LastOnline));
-        textWriter.WriteLine();
-    }
+    using CsvWriter csvWriter = new CsvWriter(textWriter, CultureInfo.InvariantCulture);
+    csvWriter.Context.RegisterClassMap<MemberClassMap>();
+    csvWriter.WriteRecords(members);
 }
 
 try
