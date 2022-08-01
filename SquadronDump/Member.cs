@@ -16,7 +16,8 @@ namespace SquadronDump
         public uint MemberId { get; set; }
 
         [JsonPropertyName("joined")]
-        public string? Joined { get; set; }
+        [JsonConverter(typeof(FrontierDateJsonConverter))]
+        public DateTime? Joined { get; set; }
 
         [JsonPropertyName("joined_ts")]
         public long JoinedTs { get; set; }
@@ -28,7 +29,8 @@ namespace SquadronDump
         public bool Applied { get; set; }
 
         [JsonPropertyName("requested")]
-        public string? Requested { get; set; }
+        [JsonConverter(typeof(FrontierDateJsonConverter))]
+        public DateTime? Requested { get; set; }
 
         [JsonPropertyName("requested_ts")]
         public ulong RequestedTs { get; set; }
@@ -37,6 +39,7 @@ namespace SquadronDump
         public uint RankId { get; set; }
 
         [JsonPropertyName("request_letter")]
+        [JsonConverter(typeof(FrontierEncodedStringJsonConverter))]
         public string? RequestLetter { get; set; }
 
         [JsonPropertyName("credit_contributions")]
@@ -64,13 +67,14 @@ namespace SquadronDump
         public uint RankExobiologist { get; set; }
 
         [JsonPropertyName("lastOnline")]
-        public string? LastOnline { get; set; }
+        [JsonConverter(typeof(FrontierDateJsonConverter))]
+        public DateTime? LastOnline { get; set; }
 
         [JsonPropertyName("lastOnline_ts")]
         public ulong LastOnlineTs { get; set; }
 
         [JsonPropertyName("name")]
-        [JsonConverter(typeof(NameJsonConverter))]
+        [JsonConverter(typeof(FrontierEncodedStringJsonConverter))]
         public string? Name { get; set; }
     }
 }

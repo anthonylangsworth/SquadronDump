@@ -13,11 +13,11 @@ namespace SquadronDump
         {
             Map(m => m.Name).Name("Name");
             Map(m => m.RankId).Name("Squadron Rank");
-            Map(m => m.Requested).Name("Date Requested");
+            Map(m => m.Requested).Name("Date Requested").Optional();
             Map(m => m.Pending).Name("Pending");
-            Map(m => m.Joined).Name("Date Joined");
+            Map(m => m.Joined).Name("Date Joined").Optional();
             Map(m => m.Presence).Name("Online");
-            Map(m => m.LastOnline).Name("Last Online"); ;
+            Map(m => m.LastOnline).Name("Last Online").Optional();
         }
     }
 }

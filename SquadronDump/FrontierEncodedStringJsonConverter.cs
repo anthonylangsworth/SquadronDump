@@ -11,7 +11,7 @@ namespace SquadronDump
     /// <summary>
     /// Decode the hex ASCII encoded text.
     /// </summary>
-    internal class NameJsonConverter : JsonConverter<string>
+    internal class FrontierEncodedStringJsonConverter : JsonConverter<string>
     {
         public override string? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
