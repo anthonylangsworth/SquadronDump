@@ -22,7 +22,7 @@ async Task<MemberResult> GetSquadronMembers(HttpClient httpClient, uint squadron
 
 void DumpMembers(Member[] members, TextWriter textWriter)
 {
-    using CsvWriter csvWriter = new CsvWriter(textWriter, CultureInfo.InvariantCulture);
+    using CsvWriter csvWriter = new CsvWriter(textWriter, CultureInfo.CurrentUICulture);
     csvWriter.Context.RegisterClassMap<MemberClassMap>();
     csvWriter.WriteRecords(members);
 }
